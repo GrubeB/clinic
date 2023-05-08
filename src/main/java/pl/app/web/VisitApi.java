@@ -50,7 +50,7 @@ public class VisitApi {
     private ResponseEntity<Visit> create(@RequestBody @Valid CreateVisitDto dto, HttpServletRequest request) {
         Visit visit = service.create(dto);
         return ResponseEntity
-                .created(URI.create(request.getRequestURI() + '/' + visit.getId()))
+                .created(URI.create(request.getRequestURI() + '/'  + visit.getId()))
                 .body(visit);
     }
 
