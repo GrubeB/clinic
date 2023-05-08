@@ -1,11 +1,12 @@
 package pl.app.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -19,7 +20,4 @@ public class Pet implements Serializable {
     private Long id;
     @Column(nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "pet", orphanRemoval = true)
-    private Set<Visit> visits = new LinkedHashSet<>();
 }

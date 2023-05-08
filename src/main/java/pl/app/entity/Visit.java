@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -27,6 +25,7 @@ public class Visit implements Serializable {
     private String clinicName;
     @Column(nullable = false)
     private Instant date;
+
     @ManyToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
