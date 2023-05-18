@@ -12,7 +12,6 @@ public class SpringDataRestCustomization {
 
     @Bean
     public RepositoryRestConfigurer repositoryRestConfigurer() {
-
         return new RepositoryRestConfigurer() {
             @Override
             public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {

@@ -1,4 +1,4 @@
-package pl.app.web;
+package pl.app.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -15,9 +15,9 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(VisitApi.resourcePath)
+@RequestMapping(VisitController.resourcePath)
 @RequiredArgsConstructor
-public class VisitApi {
+public class VisitController {
     public static final String resourceName = "visits";
     public static final String resourcePath = "/api/" + resourceName;
     private final VisitService service;
@@ -47,10 +47,10 @@ public class VisitApi {
     }
 
     @PostMapping
-    private ResponseEntity<Visit> create(@RequestBody @Valid CreateVisitDto dto, HttpServletRequest request) {
+    private ResponseEntity<Visit> create(@RequestBody @Valid CreateVisitDto dto) {
         Visit visit = service.create(dto);
         return ResponseEntity
-                .created(URI.create(request.getRequestURI() + '/'  + visit.getId()))
+                .status(HttpStatus.CREATED)
                 .body(visit);
     }
 

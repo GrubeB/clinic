@@ -40,15 +40,17 @@ public class VisitService {
         Visit newVisit = new Visit(null, dto.getVeterinarianName(), dto.getClinicName(), Instant.now(), pet, person);
         return visitRepository.save(newVisit);
     }
-    public Visit update(Long id, UpdateVisitDto dto) {
-        Assert.notNull(id, "Id must not be null.");
-        Visit existingEntity = visitRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found visit with id: " + id));
-        updateVisits(dto, existingEntity);
-        return visitRepository.save(existingEntity);
-    }
     public void delete(Long id) {
         Assert.notNull(id, "Id must not be null.");
         visitRepository.deleteById(id);
+    }
+
+    public Visit update(Long id, UpdateVisitDto dto) {
+        Assert.notNull(id, "Id must not be null.");
+        Visit existingEntity = visitRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Not found visit with id: " + id));
+        updateVisits(dto, existingEntity);
+        return visitRepository.save(existingEntity);
     }
 
     private void updateVisits(UpdateVisitDto dto, Visit existingEntity) {
